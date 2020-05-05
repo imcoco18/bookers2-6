@@ -11,21 +11,21 @@ class BookCommentsController < ApplicationController
 	end
 
 	def destroy
+		book = Book.find(params[:book_id])
+		comment = BookComment.find(params[:id])
 		comment.destroy
     	flash[:success] = 'comment deleted'
-    	redirect_back(fallback_location: root_path)
+    	redirect_to book_path(book)
 	end
-
-	def correct_user
-    	comment = current_user.comments.find_by(id: params[:id])
-    unless comment
-      redirect_to root_url
-    end
-  	end
 
 
 	private
 	def book_comment_params
 		params.require(:book_comment).permit(:comment)
 	end
+
+	def correct_user
+    	comment = current_user.book_comments.find_by(id: params[:id])
+  	end
+
 end

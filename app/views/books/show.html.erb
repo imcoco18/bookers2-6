@@ -78,8 +78,8 @@
 			            </td>
 			            <td>
 			            	<span>
-			            		<% if @book.user == current_user %>
-										<%= link_to "Destroy",book_path(@book.id), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book_comment.id}" %>
+			            		<% if book_comment.user == current_user %>
+										<%= link_to "Destroy",book_book_comment_path(@book, book_comment), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{book_comment.id}" %>
 								<% end %>
 							</span>
 						</td>
