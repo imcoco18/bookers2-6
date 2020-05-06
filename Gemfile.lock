@@ -62,8 +62,14 @@ GEM
     autoprefixer-rails (9.7.6)
       execjs
     bcrypt (3.1.13)
+    better_errors (2.7.0)
+      coderay (>= 1.0.0)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
     bindex (0.8.1)
     binding_ninja (0.2.3)
+    binding_of_caller (0.8.0)
+      debug_inspector (>= 0.0.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
     bootstrap-sass (3.3.7)
@@ -92,6 +98,7 @@ GEM
       equalizer (~> 0.0.9)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
+    debug_inspector (0.0.3)
     devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -158,6 +165,8 @@ GEM
     orm_adapter (0.5.0)
     parser (2.7.1.2)
       ast (~> 2.4.0)
+    polyamorous (2.3.2)
+      activerecord (>= 5.2.1)
     proc_to_ast (0.1.0)
       coderay
       parser
@@ -199,6 +208,11 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
     rake (13.0.1)
+    ransack (2.3.2)
+      activerecord (>= 5.2.1)
+      activesupport (>= 5.2.1)
+      i18n
+      polyamorous (= 2.3.2)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -311,6 +325,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
   bootsnap (>= 1.1.0)
   bootstrap-sass (~> 3.3.6)
   byebug
@@ -325,6 +341,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.2)
   rails-controller-testing
+  ransack
   refile!
   refile-mini_magick
   rspec-parameterized

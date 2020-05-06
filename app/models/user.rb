@@ -36,6 +36,13 @@ class User < ApplicationRecord
     #フォローしているユーザーたちを取得
   end
 
+  def User.search(search, user_or_book)
+    if user_or_book == "1"
+       User.where(['name LIKE ?', "%#{search}%"])
+    else
+       User.all
+    end
+end
 
   #バリデーションは該当するモデルに設定する。エラーにする条件を設定できる。
   validates :name, presence: true, length: {maximum: 20, minimum: 2}
