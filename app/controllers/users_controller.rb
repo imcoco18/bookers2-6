@@ -54,15 +54,6 @@ class UsersController < ApplicationController
     render 'show_follower'
   end
 
-  def search
-     @user_or_post = params[:option]
-    if @user_or_book == "1"
-      @users = User.search(params[:search], @user_or_book)
-    else
-      @books = Book.search(params[:search], @user_or_book)
-    end
-  end
-
   private
   def user_params
   	params.require(:user).permit(:name, :introduction, :profile_image)

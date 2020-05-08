@@ -1,32 +1,68 @@
 <div class="container">
 	<div class="row">
 
-			<% if @user_or_book == "1"%>
-			    <h1>User</h1>
-			    <table>
-			        <% @users.each do |user| %>
-			        <thead>
-			            <tr>
-			                <th></th>
-			                <th><%= user.name %> </th>
-			            </tr>
-			        </thead>
-			        <% end %>
-			    </table>
 
-			<% elsif @user_or_book == "2" %>
-			    <h2>Book</h2>
-			    <table>
-			    <% @books.each do |book| %>
-			        <thead>
-			            <tr>
-			                <th></th>
-			                <th><%= book.title %></th>
-			            </tr>
-			        </thead>
-			    <% end %>
-			    </table>
-			<% else %>
+			<% if @model == 'user' %>
+
+				<h2>Users search for<strong>'<%= @content %>'</strong></h2>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>image</th>
+							<th>name</th>
+							<th colspan="3"></th>
+							<th colspan="3"></th>
+							<th colspan="3"></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<% if @datas.any? %>
+							<% @datas.each do |data| %>
+								<tr class="searched-box">
+									<%= link_to user_path(data) do %>
+									<td class="images">
+										<%= attachment_image_tag data, :profile_image, class: "inline-box", fallback: "no_image.jpg" %>
+									</td>
+									<% end %>
+									<td class="profiles"><%= data.name %></td>
+								
+								</tr>
+							<% end %>
+						<% end %>
+					</tbody>
+
+			<% else @model == 'book' %>
+
+				<h2>Books search for<strong>'<%= @content %>'</strong></h2>
+				<table class="table table-hover table-inverse">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Title</th>
+							<th>Opinion</th>
+							<th colspan="3"></th>
+						</tr>
+					</thead>
+
+					<tbody>
+					<% if @datas.any? %>
+							<% @datas.each do |data| %>
+								<tr class="searched-box">
+									
+									<td class ="images">
+								          <%= attachment_image_tag data, :profile_image, class: "inline-box", fallback: "no_image.jpg"%>
+								    </td>
+								    
+										<td><%= data.title %></td>
+										<td><%= data.body %></td>
+								</tr>
+							<% end %>
+					<% end %>
+					</tbody>
+				</table>
 			<% end %>
+
+
 	</div>
 </div>

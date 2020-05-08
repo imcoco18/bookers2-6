@@ -82,4 +82,9 @@ gem 'jquery-rails'
 
 gem 'ransack'
 
+gem 'kaminari'
+
+
+
+
 
