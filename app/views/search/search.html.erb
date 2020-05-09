@@ -26,7 +26,8 @@
 									</td>
 									<% end %>
 									<td class="profiles"><%= data.name %></td>
-								
+									<td><%= link_to "Show", user_path(data.id), class: "user_#{data.id}" %></td>
+
 								</tr>
 							<% end %>
 						<% end %>
@@ -49,12 +50,10 @@
 					<% if @datas.any? %>
 							<% @datas.each do |data| %>
 								<tr class="searched-box">
-									
 									<td class ="images">
-								          <%= attachment_image_tag data, :profile_image, class: "inline-box", fallback: "no_image.jpg"%>
+								          <%= attachment_image_tag(data.user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
 								    </td>
-								    
-										<td><%= data.title %></td>
+									<td><%= link_to data.title, book_path(data.id), class: "book_#{data.id}" %></td>
 										<td><%= data.body %></td>
 								</tr>
 							<% end %>

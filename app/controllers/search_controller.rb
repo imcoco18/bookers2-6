@@ -9,7 +9,7 @@ class SearchController < ApplicationController
     	@content = params['search']['content']
     	@how = params["search"]["how"]
     	@datas = search_for(@model, @content, @how)
-    	@users = User.all
+    	
 	end
 
 	private
