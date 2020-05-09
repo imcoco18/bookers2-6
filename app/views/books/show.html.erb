@@ -26,21 +26,9 @@
 						<td><%= link_to @book.title, @book %></td>
 						<td><%= @book.body %></td>
 
-						<% if @book.favorited_by?(current_user) %>
-						<td>
-							<%= link_to book_favorites_path(@book), method: :delete do %>
-						    <i class="fa fa-heart" aria-hidden="true" ></i>
-							<%= @book.favorites.count %>
-							<% end %>
-						</td>
-						<% else %>
-						<td>
-						    <%= link_to book_favorites_path(@book), method: :post do %>
-						    <i class="fa fa-heart-o" aria-hidden="true"></i>
-						    <%= @book.favorites.count %>
-						    <% end %>
-						</td>
-						<% end %>
+						<div id="favorites_buttons_<%= book.id %>">
+							<%= render partial: 'favorites/favorite', locals: { book: @book } %>
+						</div>
 
 						<td>
 						<i class="fa fa-comment"></i>
@@ -51,11 +39,11 @@
 						<td><% if @book.user == current_user %>
 							<%= link_to "Edit",edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %>
 							<% end %></td>
-							
+
 						<td><% if @book.user == current_user %>
 							<%= link_to "Destroy",book_path(@book.id), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %>
 							<% end %></td>
-							
+
 					</tr>
 				</table>
 
@@ -91,7 +79,7 @@
 				</table>
 				<div class="row">
 				<%= form_for [@book, @book_comment] do |f| %>
-				    
+				   
 				    <%= f.text_area :comment, rows:'5', class: "col-xs-10 comment-form",placeholder: "comment" %>
 				    <%= f.submit "送信", class: "btn btn-default btn-sm btn-base-1 pull-left" %>
 				<% end %>
